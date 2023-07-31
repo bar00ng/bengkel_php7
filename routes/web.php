@@ -14,9 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('user.index');
-});
-
-Route::get('/jovi-about', function () {
-    return view('user.about');
+    return view('admin.index');
 });
