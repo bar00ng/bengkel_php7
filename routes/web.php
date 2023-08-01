@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('admin.dashboard');
+=======
+    return view('user.index');
+>>>>>>> 604d4fe72c5503e4c5f6f642b7870bf36511aa02
 });
 
 Route::group(['middleware' => ['auth']], function() {
