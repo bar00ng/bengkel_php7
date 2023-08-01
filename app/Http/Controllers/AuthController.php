@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -23,7 +26,7 @@ class AuthController extends Controller
             'password.min' => 'Password minimal harus 6 karakter.',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password'])
@@ -31,7 +34,7 @@ class AuthController extends Controller
 
         $user->attachRole('guest');
 
-        return back()->with('200', 'Proses register berhasil!');
+        return back()->with('success', 'Proses register berhasil!');
     }
 
     public function login(Request $request) {

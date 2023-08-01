@@ -14,19 +14,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-<<<<<<< HEAD
-    return view('admin.dashboard');
-=======
     return view('user.index');
->>>>>>> 604d4fe72c5503e4c5f6f642b7870bf36511aa02
+});
+
+Route::group(['middleware' => ['auth', 'role:owner|guest']], function() {
+
+});
+
+Route::group(['middleware' => ['auth', 'role:owner']], function() {});
+
+Route::group(['middleware' => ['auth', 'role:owner|mekanik']], function() {
+    Route::get('/admin/dashboard', function() {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    Route::get('/admin/list-bookin', 'BookingController@index')->name('list.book');
 });
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', '')->name('dashboard');
-
     Route::post('/logout', 'AuthController@logout')->name('logout');
-});
 
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});
 
 Route::get('/login', function() {
     return view('auth.login');
@@ -38,8 +47,14 @@ Route::get('/register', function() {
 })->name('register.form');
 Route::post('/register', 'AuthController@store')->name('register.proses');
 
-Route::middleware('redirectIfAuthenticated')->group(function (){
-    Route::get('/login', function() {
-        return view('auth.login')->with('401', 'Silahkan login terlebih dahulu!');
-    })->name('login');
-});
+Route::get('/user/dashboard', function() {
+    return view('user.index');
+})->name('guest.dashboard');
+
+Route::get('/user/form-booking', function() {
+    return view('user.formBooking');
+})->name('guest.form.booking');
+
+Route::get('/user/about', function() {
+    return view('user.about');
+})->name('about');

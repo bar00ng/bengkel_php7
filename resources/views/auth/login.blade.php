@@ -10,7 +10,7 @@
     <div class="form-group has-validation">
         <input type="email" name="email" class="form-control form-control-user {{ $errors->has('email') ? 'is-invalid' : '' }}"
             id="exampleInputEmail" aria-describedby="emailHelp"
-            placeholder="Masukkan Alamat Email..." value="{{ old('email') }}">
+            placeholder="Masukkan Alamat Email..." value="{{ old('email') }}" autofocus>
         <div class="invalid-feedback">
             {{ $errors->first('email') }}
         </div>
@@ -27,4 +27,7 @@
     </button>
 </form>
 <hr>
+<div class="text-center">
+    <a class="small" href="{{ route('register.form') }}">Create an Account!</a>
+</div>
 @endsection

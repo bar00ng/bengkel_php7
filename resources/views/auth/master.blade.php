@@ -30,7 +30,16 @@
         <div class="row justify-content-center">
 
             <div class="col-md-6">
-
+                @if (session()->has('success'))
+                    <div class="alert alert-success mt-5" role="alert">
+                        <b>Sukses!</b> {{ session('success') }}
+                    </div>
+                @elseif (session()->has('failed'))
+                    <div class="alert alert-danger mt-5" role="alert">
+                        <b>Gagal!</b> {{ session('failed') }}
+                    </div>
+                @endif
+                
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <div class="row">

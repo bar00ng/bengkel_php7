@@ -1,7 +1,7 @@
 @extends('user.master')
 
 @section('content')
-    <!-- Product section-->
+    <!-- Paint/ Repaint section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
@@ -9,13 +9,13 @@
                     <div id="carousel-1" class="carousel slide carousel-dark">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="img/Motor1.jpeg" class="d-block w-100" alt="...">
+                                <img src="/img/Motor1.jpeg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="img/Motor2.jpeg" class="d-block w-100" alt="...">
+                                <img src="/img/Motor2.jpeg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="img/Motor3.jpeg" class="d-block w-100" alt="...">
+                                <img src="/img/Motor3.jpeg" class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-1"
@@ -44,25 +44,25 @@
             </div>
         </div>
     </section>
-    <!-- Product section 3-->
-    <!-- Product section-->
-    <section class="py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="img/Servis1.jpg" alt="..." /></div>
-                    <div class="col-md-6">
-                        <h1 class="display-5 fw-bolder">Servis</h1>
-                        <div class="fs-5 mb-5">
-                            <span>Rp. 150.000,00</span>
-                        </div>
-                        <p class="lead">Kami juga menyediakan jasa servis motor mulai dari ganti oli, throttle body, dan lain-lain.
-                            Mulai dengan harga Rp 150 ribu untuk full servis motor matic kesayangan anda.</p>
-                        
+
+    <!-- Servis Section-->
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/img/Servis1.jpg" alt="..." /></div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder">Servis</h1>
+                    <div class="fs-5 mb-5">
+                        <span>Rp. 150.000,00</span>
                     </div>
+                    <p class="lead">Kami juga menyediakan jasa servis motor mulai dari ganti oli, throttle body, dan lain-lain.
+                        Mulai dengan harga Rp 150 ribu untuk full servis motor matic kesayangan anda.</p>
                 </div>
             </div>
-        </section>
-    <!-- Product section 3-->
+        </div>
+    </section>
+
+    <!-- Tune Up section -->
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
@@ -70,13 +70,13 @@
                     <div id="carousel-3" class="carousel slide carousel-dark">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="img/CVT1.jpeg" class="d-block w-100" alt="...">
+                                <img src="/img/CVT1.jpeg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="img/CVT2.jpeg" class="d-block w-100" alt="...">
+                                <img src="/img/CVT2.jpeg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="img/CVT3.jpg" class="d-block w-100" alt="...">
+                                <img src="/img/CVT3.jpg" class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-3"
@@ -102,15 +102,17 @@
             </div>
         </div>
     </section>
-    <!-- Related items section-->
+
+    <!-- Review -->
     <section class="py-5 bg-light">
         <div class="container px-4 px-lg-5 mt-5">
             <h2 class="fw-bolder mb-4">Review Flamenggo Garage</h2>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {{-- Card Review 1 --}}
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="img/Jere.jpeg" alt="..." />
+                        <img class="card-img-top" src="/img/Jere.jpeg" alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
@@ -129,10 +131,12 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- Card Review 2 --}}
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="img/Jovi.jpeg" alt="..." />
+                        <img class="card-img-top" src="/img/Jovi.jpeg" alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
@@ -152,10 +156,12 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- Card Review 3 --}}
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
-                        <img class="card-img-top" src="img/Dave.jpeg" alt="..." />
+                        <img class="card-img-top" src="/img/Dave.jpeg" alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
@@ -175,5 +181,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     </section>
 @endsection
