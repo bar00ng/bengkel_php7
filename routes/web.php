@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth', 'role:owner|mekanik']], function() {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/admin/list-bookin', 'BookingController@index')->name('list.book');
+    Route::get('/admin/list-booking/{filter?}', 'BookingController@index')->name('list.book');
 });
 
 Route::group(['middleware' => ['auth']], function() {

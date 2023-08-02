@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Booking;
+
+class BookingDetail extends Model
+{
+    protected $table = 'booking_detail';
+
+    protected $fillable = [
+        'kd_booking',
+        'jasa_id',
+        'sub_total'
+    ];
+
+    public function booking() {
+        return $this->belongsTo(Booking::class, 'kd_booking', 'kd_booking');
+    }
+}
