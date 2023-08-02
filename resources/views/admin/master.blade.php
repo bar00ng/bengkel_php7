@@ -38,8 +38,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item {{ request()->routeIs('*dashboard*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -53,7 +53,7 @@
             </div>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->routeIs('*book*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('list.book') }}">
                     <i class="fas fa-fw fa-list"></i>
                     <span>List Boooking</span></a>

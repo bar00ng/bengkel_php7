@@ -12,10 +12,13 @@ class BookingDetail extends Model
     protected $fillable = [
         'kd_booking',
         'jasa_id',
-        'sub_total'
     ];
 
     public function booking() {
         return $this->belongsTo(Booking::class, 'kd_booking', 'kd_booking');
+    }
+
+    public function jasa() {
+        return $this->hasOne(Jasa::class, 'id', 'jasa_id');
     }
 }

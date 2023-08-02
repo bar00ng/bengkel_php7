@@ -8,6 +8,15 @@
         <h1 class="h3 mb-0 text-gray-800">List Booking</h1>
     </div>
 
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            <Strong>Berhasil!</Strong> {{ session('success') }}
+        </div>
+    @elseif (session()->has('failed'))
+        <div class="alert alert-danger" role="alert">
+            <strong>Gagal!</strong> {{ session('failed') }}
+        </div>
+    @endif
     
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -83,44 +92,77 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan KD_11212</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">{{ 'Detail ' . $item->kd_booking }}</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        ...
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                        <dl class="row">
+                                                            <dt class="col-sm-4">Tanggal Booking</dt>
+                                                            <dd class="col-sm-8">{{ $item->created_at }}</dd>
+                                                          
+                                                            <dt class="col-sm-4">Nama Booker</dt>
+                                                            <dd class="col-sm-8">{{ $item->nama_booking }}</dd>
+                
+                                                            <dt class="col-sm-4">Daftar Belanja</dt>
+                                                            <dd class="col-sm-8">
+                                                                <ul class="list-unstyled">
+                                                                    @foreach ($item->bookingDetail as $detail)
+                                                                        <li>{{ $detail->jasa->nama_jasa . ' - ' . number_format($detail->jasa->harga_jasa) }}</li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </dd>
+
+                                                            <dt class="col-sm-4">Status</dt>
+                                                            @if ($item->status == 'Belum Selesai')
+                                                                <dd class="col-sm-8 text-danger">Belum Selesai</dd>
+                                                            @elseif ($item->status == 'On Progress')
+                                                                <dd class="col-sm-8 text-warning">On Progress</dd>
+                                                            @elseif ($item->status == 'Selesai')
+                                                                <dd class="col-sm-8 text-success">Selesai</dd>
+                                                            @endif
+                
+                                                            <dt class="col-sm-4">Total Bayar</dt>
+                                                            <dd class="col-sm-8">{{ 'Rp. ' . number_format($item->total_booking) }}</dd>
+                                                        </dl>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         {{-- Button Tandai OnProgress --}}
-                                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-placement="top" title="Tandai On Progress">
-                                            <i class="fa fa-wrench"></i>
-                                        </button>
-
-                                        {{-- Button Tandai Selesai --}}
-                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-placement="top" title="Tandai Selesai">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-
-                                        {{-- Button Tandai OnProgress --}}
-                                        @if(Auth::user()->hasRole(['owner', 'mekanik']))
-                                        <form action="/delete-kd/{{$item->kd_booking}}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-placement="top" title="Hapus">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        @if ($item->status == 'Belum Selesai')
+                                            <form action="{{ route('patch.book', ['kd_booking' => $item->kd_booking, 'status' => 'on-progress']) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-placement="top" title="Tandai On Progress">
+                                                    <i class="fa fa-wrench"></i>
+                                                </button>
+                                            </form>
                                         @endif
                                         
-                                        
+                                        @if ($item->status == 'On Progress')
+                                            {{-- Button Tandai Selesai --}}
+                                            <form action="{{ route('patch.book', ['kd_booking' => $item->kd_booking, 'status' => 'selesai']) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-placement="top" title="Tandai Selesai">
+                                                    <i class="fa fa-check"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                        {{-- Button Hapus Booking --}}
+                                        @if(Auth::user()->hasRole(['owner']))
+                                            <form action="{{ route('delete.book', ['kd_booking' => $item->kd_booking]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-placement="top" title="Hapus">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

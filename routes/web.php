@@ -39,30 +39,30 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('/login', function() {
     return view('auth.login');
-})->name('login.form');
+})->name('login');
+
 Route::post('/login', 'AuthController@login')->name('login.proses');
 
 Route::get('/register', function() {
     return view('auth.register');
 })->name('register.form');
+
 Route::post('/register', 'AuthController@store')->name('register.proses');
 
 Route::get('/user/dashboard', function() {
     return view('user.index');
 })->name('guest.dashboard');
 
-Route::get('/user/form-booking', function() {
-    return view('user.formBooking');
-})->name('guest.form.booking');
+Route::get('/user/form-booking', 'BookingController@formAdd')->name('guest.form.booking');
 
 Route::get('/user/about', function() {
     return view('user.about');
 })->name('about');
 
-Route::post('/user/form-booking', 'BookingController@storeData');
+Route::post('/user/form-booking', 'BookingController@storeData')->name('store.book');
 
-Route::get('/tes-view', 'TesController@index');
-Route::post('/route-tes', 'TesController@store');
-Route::delete('/delete-tes/{id}', 'TesController@delete');
-
-Route::delete('/delete-kd/{kd}', 'BookingController@delete');
+// Route::get('/tes-view', 'TesController@index');
+// Route::post('/route-tes', 'TesController@store');
+// Route::delete('/delete-tes/{id}', 'TesController@delete');
+Route::delete('/delete-booking/{kd_booking}', 'BookingController@delete')->name('delete.book');
+Route::patch('/patch-booking/{kd_booking}/{status}', 'BookingController@patch')->name('patch.book');

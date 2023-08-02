@@ -37,8 +37,11 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('*dashboard*') ? 'active' : '' }}" aria-current="page" href="{{ route('dashboard') }}">Home</a></li>
+                        @if (Auth::user())
+                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('*book*') ? 'active' : '' }}" aria-current="page" href="#">History</a></li>
+                        @endif
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('*about*') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jasa</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -58,13 +61,15 @@
                             </button>
                         </form>
                     @else
-                        <a href="{{ route('login.form') }}" class="btn btn-outline-primary" role="button">Login</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary" role="button">Login</a>
                     @endif
                 </div>
             </div>
         </nav>
         
-        @yield('content')
+        <div class="mt-5">
+            @yield('content')
+        </div>
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">

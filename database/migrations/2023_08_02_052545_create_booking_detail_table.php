@@ -18,7 +18,6 @@ class CreateBookingDetailTable extends Migration
             $table->string('kd_booking');
             $table->foreign('kd_booking')->references('kd_booking')->on('booking')->onDelete('cascade');
             $table->foreignId('jasa_id')->constrained('jasa')->onDelete('cascade');
-            $table->double('sub_total');
             $table->timestamps();
         });
     }
