@@ -59,7 +59,7 @@
                                     <td>{{ $item->kd_booking }}</td>
                                     <td>{{ $item->nama_booking }}</td>
                                     <td>{{ $item->nomor_hp_booking }}</td>
-                                    <td>{{ $item->alamat_booking }}</td>
+                                    <td>{{ $item->email_booking }}</td>
                                     <td>
                                         @if ($item->status == 'Belum Selesai')
                                             <span class="badge badge-danger">Belum Selesai</span>
@@ -108,6 +108,19 @@
                                         <button type="button" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-placement="top" title="Tandai Selesai">
                                             <i class="fa fa-check"></i>
                                         </button>
+
+                                        {{-- Button Tandai OnProgress --}}
+                                        @if(Auth::user()->hasRole(['owner', 'mekanik']))
+                                        <form action="/delete-kd/{{$item->kd_booking}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-placement="top" title="Hapus">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                        @endif
+                                        
+                                        
                                     </td>
                                 </tr>
                             @endforeach

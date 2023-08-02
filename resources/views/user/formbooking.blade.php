@@ -5,18 +5,19 @@
         <div class="container px-4 px-lg-5 my-2 w-75">
             <div class="card custom-card p-4">
                 <h1>Form Booking</h1>
-                <form>
+                <form  action="/user/form-booking" method="POST">
+                    @csrf
                     <div class="form-group pb-4">
                         <label for="name">Nama</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        <input type="text" class="form-control" name="nama" placeholder="Enter your name">
                     </div>
                     <div class="form-group pb-4">
                         <label for="phone">Nomor Hp</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Enter your number">
+                        <input type="text" class="form-control" name="nomor_hp_booking" placeholder="Enter your number">
                     </div>
                     <div class="form-group pb-4">
                         <label for="email">Alamat Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        <input type="email" class="form-control" name="email_booking" placeholder="Enter your email">
                     </div>
 
                     <div class="form-group pb-4">
@@ -46,7 +47,7 @@
                     </div>
                     <div class="form-group pb-4" style="display:none" id="kategori-paint">
                         <label for="kategori">Kategori</label>
-                        <input type="warna" class="form-control" id="warna" placeholder="Misal Full Body, atau Velg saja">
+                        <input type="warna" class="form-control" id="warna" placeholder="Misal Full body, atau Velg saja">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

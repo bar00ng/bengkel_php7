@@ -14,7 +14,7 @@ class Booking extends Model
         'kd_booking',
         'nama_booking',
         'nomor_hp_booking',
-        'alamat_booking',
+        'email_booking',
         'status',
         'total_booking'
     ];

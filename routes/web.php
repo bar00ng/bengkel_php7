@@ -34,8 +34,8 @@ Route::group(['middleware' => ['auth', 'role:owner|mekanik']], function() {
 Route::group(['middleware' => ['auth']], function() {
     Route::post('/logout', 'AuthController@logout')->name('logout');
 
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 });
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::get('/login', function() {
     return view('auth.login');
@@ -58,3 +58,11 @@ Route::get('/user/form-booking', function() {
 Route::get('/user/about', function() {
     return view('user.about');
 })->name('about');
+
+Route::post('/user/form-booking', 'BookingController@storeData');
+
+Route::get('/tes-view', 'TesController@index');
+Route::post('/route-tes', 'TesController@store');
+Route::delete('/delete-tes/{id}', 'TesController@delete');
+
+Route::delete('/delete-kd/{kd}', 'BookingController@delete');

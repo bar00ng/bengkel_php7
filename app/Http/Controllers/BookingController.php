@@ -20,4 +20,20 @@ class BookingController extends Controller
 
         return view('admin.listBooking', compact('data'));
     }
+
+    public function storeData(Request $req) {
+        Booking::create([
+            'nama_booking' => $req->nama,
+            'nomor_hp_booking' => $req->nomor_hp_booking,
+            'email_booking' =>$req->email_booking,
+            'kd_booking' => Booking::generateKodeBooking(),
+            'total_booking' => 100000
+        ]);
+    }
+    
+    public function delete($kd) {
+        Booking::where('kd_booking', $kd)->delete(); 
+
+        return redirect('/admin/list-booking/');
+    }
 }
