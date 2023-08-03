@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Booking;
+use App\Models\User;
 
 class Testimoni extends Model
 {
@@ -19,5 +20,9 @@ class Testimoni extends Model
 
     public function booking() {
         return $this->belongsTo(Booking::class, 'kd_booking', 'kd_booking');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

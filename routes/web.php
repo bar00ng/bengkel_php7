@@ -49,9 +49,7 @@ Route::get('/register', function() {
 
 Route::post('/register', 'AuthController@store')->name('register.proses');
 
-Route::get('/user/dashboard', function() {
-    return view('user.index');
-})->name('guest.dashboard');
+Route::get('/user/dashboard', 'DashboardController@userdashboard')->name('guest.dashboard');
 
 Route::get('/user/form-booking', 'BookingController@formAdd')->name('guest.form.booking');
 
@@ -67,3 +65,6 @@ Route::post('/user/form-booking', 'BookingController@storeData')->name('store.bo
 Route::delete('/delete-booking/{kd_booking}', 'BookingController@delete')->name('delete.book');
 Route::patch('/patch-booking/{kd_booking}/{status}', 'BookingController@patch')->name('patch.book');
 Route::get('/history-booking', 'BookingController@listBookingUser')->name('history.book');
+
+Route::get('/user/form-testimoni/{kd_booking}', 'TestimoniController@index')->name('guest.form.testimoni');
+Route::post('/user/form-testimoni/{kd_booking}', 'TestimoniController@storeData')->name('store.testimoni');

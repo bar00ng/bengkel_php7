@@ -59,6 +59,7 @@
                                             {{ 'Rp. ' . number_format($item->total_booking) }}
                                         </td>
                                         <td>
+                                        <a class="nav-link {{ request()->routeIs('*testimoni*') ? 'active' : '' }}" aria-current="page" href="{{ route('guest.form.testimoni', ['kd_booking' => $item->kd_booking]) }}">Test</a>
                                             {{-- Button See Details --}}
                                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detail-booking-{{ $item->kd_booking }}">
                                                 <i class="fa fa-eye"></i>
