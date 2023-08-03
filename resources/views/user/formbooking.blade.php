@@ -44,11 +44,11 @@
                     </div>
                     <div class="form-group mb-4" style="display:none" id="pilihan-warna">
                         <label for="warna">Pilih Warna</label>
-                        <input type="warna" class="form-control" id="warna" placeholder="Tulis Warna">
+                        <input type="warna" class="form-control" name="warna_booking" placeholder="Tulis Warna">
                     </div>
                     <div class="form-group mb-4" style="display:none" id="kategori-paint">
                         <label for="kategori">Kategori</label>
-                        <input type="warna" class="form-control" id="warna" placeholder="Misal Full body, atau Velg saja">
+                        <input type="warna" class="form-control" id="kategori_booking" placeholder="Misal Full body, atau Velg saja">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

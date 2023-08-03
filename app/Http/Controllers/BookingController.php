@@ -7,6 +7,8 @@ use App\Models\Booking;
 use App\Models\Jasa;
 use App\Models\BookingDetail;
 
+use Auth;
+
 class BookingController extends Controller
 {
     public function index($filter = null) {
@@ -61,6 +63,7 @@ class BookingController extends Controller
             $total_booking += $dataJasa->harga_jasa;
         }
         $book->total_booking = $total_booking;
+        $book->belongsTo = Auth::user()->id;
         $savedBook = $book->save();
 
         if($savedBook) {
@@ -97,5 +100,11 @@ class BookingController extends Controller
         ]);
 
         return back()->with('success', $message);
+    }
+
+    public function listBookingUser() {
+        $data = Booking::where('belongsTo', Auth::user()->id)->get();
+
+        return view('user.listBooking', compact('data'));
     }
 }

@@ -20,6 +20,7 @@ class CreateBookingTable extends Migration
             $table->string('email_booking');
             $table->enum('status', ['Belum Selesai', 'On Progress', 'Selesai'])->default('Belum Selesai');
             $table->json('data')->nullable()->default(null);
+            $table->foreignId('belongsTo')->references('id')->on('users')->onDelete('cascade');
             $table->double('total_booking');
             $table->timestamps();
         });

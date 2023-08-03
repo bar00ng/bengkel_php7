@@ -75,7 +75,11 @@
                                         @elseif ($item->status == 'On Progress')
                                             <span class="badge badge-warning">On Progress</span>
                                         @elseif ($item->status == 'Selesai')
-                                            <span class="badge badge-success">Selesai</span>
+                                            @if (!$item->payment->isPayed)
+                                                <span class="badge badge-secondary">Belum Dibayar</span>
+                                            @elseif ($item->payment->isPayed)
+                                                <span class="badge badge-success">Selesai</span>
+                                            @endif
                                         @endif
                                     </td>
                                     <td>
@@ -83,12 +87,12 @@
                                     </td>
                                     <td>
                                         {{-- Button See Details --}}
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-toggle="modal" data-target="#detail-booking-1" data-bs-placement="bottom" title="Lihat Detail">
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-toggle="modal" data-target="#detail-booking-{{ $item->kd_booking }}" data-bs-placement="bottom" title="Lihat Detail">
                                             <i class="fa fa-eye"></i>
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="detail-booking-1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="detail-booking-{{ $item->kd_booking }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -120,7 +124,11 @@
                                                             @elseif ($item->status == 'On Progress')
                                                                 <dd class="col-sm-8 text-warning">On Progress</dd>
                                                             @elseif ($item->status == 'Selesai')
-                                                                <dd class="col-sm-8 text-success">Selesai</dd>
+                                                                @if (!$item->payment->isPayed)
+                                                                    <dd class="col-sm-8 text-secondary">Belum Bayar</dd>
+                                                                @elseif ($item->payment->isPayed)
+                                                                    <dd class="col-sm-8 text-success">Selesai</dd>
+                                                                @endif
                                                             @endif
                 
                                                             <dt class="col-sm-4">Total Bayar</dt>

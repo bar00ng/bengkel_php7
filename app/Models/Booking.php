@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BookingDetail;
+use App\Models\User;
+use App\Models\Payment;
 use App\Models\Testimoni;
 
 class Booking extends Model
@@ -17,6 +19,7 @@ class Booking extends Model
         'email_booking',
         'status',
         'data',
+        'belongsTo',
         'total_booking'
     ];
 
@@ -26,6 +29,10 @@ class Booking extends Model
 
     public function testimoni() {
         return $this->hasOne(Testimoni::class, 'kd_booking', 'kd_booking');
+    }
+
+    public function user() {
+        return $this->belongsTo(Users::class, 'belongsTo', 'id');
     }
 
     public static function generateKodeBooking() {

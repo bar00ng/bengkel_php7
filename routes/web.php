@@ -66,3 +66,4 @@ Route::post('/user/form-booking', 'BookingController@storeData')->name('store.bo
 // Route::delete('/delete-tes/{id}', 'TesController@delete');
 Route::delete('/delete-booking/{kd_booking}', 'BookingController@delete')->name('delete.book');
 Route::patch('/patch-booking/{kd_booking}/{status}', 'BookingController@patch')->name('patch.book');
+Route::get('/history-booking', 'BookingController@listBookingUser')->name('history.book');
