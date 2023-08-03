@@ -7,7 +7,7 @@
                 <h3>History Booking</h3>
                 
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -17,15 +17,6 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Kode Booking</th>
-                                <th>Status Booking</th>
-                                <th>Total (Rp.)</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
                         <tbody>
                             @php
                                 $no = 1;
@@ -48,18 +39,13 @@
                                             @elseif ($item->status == 'On Progress')
                                                 <span class="badge text-bg-warning">On Progress</span>
                                             @elseif ($item->status == 'Selesai')
-                                                @if (!$item->payment->isPayed)
-                                                    <span class="badge text-bg-secondary">Belum Dibayar</span>
-                                                @elseif ($item->payment->isPayed)
-                                                    <span class="badge text-bg-success">Selesai</span>
-                                                @endif
+                                                <span class="badge text-bg-success">Selesai</span>
                                             @endif
                                         </td>
                                         <td>
                                             {{ 'Rp. ' . number_format($item->total_booking) }}
                                         </td>
                                         <td>
-                                        <a class="nav-link {{ request()->routeIs('*testimoni*') ? 'active' : '' }}" aria-current="page" href="{{ route('guest.form.testimoni', ['kd_booking' => $item->kd_booking]) }}">Test</a>
                                             {{-- Button See Details --}}
                                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detail-booking-{{ $item->kd_booking }}">
                                                 <i class="fa fa-eye"></i>
@@ -110,6 +96,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if ($item->status == 'Selesai')
+                                                <a class="btn btn-sm btn-secondary" role="button" href="{{ route('guest.form.testimoni', ['kd_booking' => $item->kd_booking]) }}">Add Review</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

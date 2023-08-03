@@ -109,7 +109,7 @@
             <h2 class="fw-bolder mb-4">Review Flamenggo Garage</h2>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 {{-- Card Review 1 --}}
-                @foreach ($Data as $D)
+                @foreach ($data as $d)
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
@@ -118,7 +118,7 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">{{$D->user->name}}</h5>
+                                <h5 class="fw-bolder">{{$d->user->name}}</h5>
                                 <div class="d-flex justify-content-center small text-warning mb-2">
                                     <div class="bi-star-fill"></div>
                                     <div class="bi-star-fill"></div>
@@ -127,7 +127,7 @@
                                     <div class="bi-star-fill"></div>
                                 </div>
                                 <!-- Product price-->
-                                {{ $D->deskripsi_testimoni }}
+                                {{ $d->deskripsi_testimoni }}
                             </div>
                         </div>
                     </div>

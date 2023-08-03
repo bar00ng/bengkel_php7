@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('user.index');
+    return redirect()->route('guest.dashboard');
 });
 
 Route::group(['middleware' => ['auth', 'role:owner|guest']], function() {
@@ -49,7 +49,7 @@ Route::get('/register', function() {
 
 Route::post('/register', 'AuthController@store')->name('register.proses');
 
-Route::get('/user/dashboard', 'DashboardController@userdashboard')->name('guest.dashboard');
+Route::get('/user/dashboard', 'DashboardController@userDashboard')->name('guest.dashboard');
 
 Route::get('/user/form-booking', 'BookingController@formAdd')->name('guest.form.booking');
 

@@ -16,7 +16,7 @@
             
             <div class="card custom-card p-4">
                 <h1>Form Testimoni</h1>
-                <form  action="{{ route('store.testimoni',['kd_booking'=>$Data->kd_booking]) }}" method="POST" enctype="multipart/form-data">
+                <form  action="{{ route('store.testimoni',['kd_booking'=>$data->kd_booking]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group has-validation mb-4 ">
                         <label>Rating</label>
@@ -40,5 +40,4 @@
             </div>
         </div>
     </section>
-
 @endsection

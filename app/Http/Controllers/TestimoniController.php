@@ -10,14 +10,17 @@ use Auth;
 class TestimoniController extends Controller
 {
     public function index ($kd_booking) {
-        $Data =Booking:: where('kd_booking',$kd_booking)-> first();
-        return view('user.formtestimoni', compact('Data'));
+        $data = Booking:: where('kd_booking',$kd_booking)-> first();
+
+        return view('user.formtestimoni', compact('data'));
     }
+
     public function storeData (Request $req, $kd_booking) {
         $validated =$req->validate([
             'rating_testimoni'=>'required|numeric|min:1',
             'deskripsi_testimoni'=>'required|'
         ]);
+
         if ($req->hasFile('file_testimoni') && $req->file('file_testimoni')->isValid()){
             $file = $req->file('file_testimoni');
             $filename = $file->getClientOriginalName();
@@ -27,8 +30,9 @@ class TestimoniController extends Controller
         }
         $validated['user_id']= Auth::user()-> id;
         $validated['kd_booking']= $kd_booking; 
-        Testimoni:: create($validated);
-        return back()->with('success', 'berhasil upload testimoni');
 
+        Testimoni:: create($validated);
+
+        return back()->with('success', 'Berhasil upload testimoni!');
     }
 }

@@ -15,9 +15,10 @@ class DashboardController extends Controller
             return redirect()->route('guest.dashboard');
         }
     }
-    public function userdashboard(){
-        $Data = Testimoni::latest()->limit(3)->get();;
-        return view('user.index', compact('Data'));
-    
+
+    public function userDashboard(){
+        $data = Testimoni::latest()->limit(3)->get();
+
+        return view('user.index', compact('data'));
     }
 }
