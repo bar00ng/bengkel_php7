@@ -55,7 +55,8 @@
                     <div class="fs-5 mb-5">
                         <span>Rp. 150.000,00</span>
                     </div>
-                    <p class="lead">Kami juga menyediakan jasa servis motor mulai dari ganti oli, throttle body, dan lain-lain.
+                    <p class="lead">Kami juga menyediakan jasa servis motor mulai dari ganti oli, throttle body, dan
+                        lain-lain.
                         Mulai dengan harga Rp 150 ribu untuk full servis motor matic kesayangan anda.</p>
                 </div>
             </div>
@@ -95,45 +96,77 @@
                     <h1 class="display-5 fw-bolder">Tune Up/Modif CVT</h1>
                     <div class="fs-5 mb-5">
                     </div>
-                    <p class="lead">Apakah anda ingin membuat tarikan motor matic anda lebih ringan? Tenang saja, bengkel kami
-                        menyediakan jasa upgrade cvt membuat motor lebih enteng dan lebih kencang. 
+                    <p class="lead">Apakah anda ingin membuat tarikan motor matic anda lebih ringan? Tenang saja, bengkel
+                        kami
+                        menyediakan jasa upgrade cvt membuat motor lebih enteng dan lebih kencang.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Review -->
-    <section class="py-5 bg-light">
-        <div class="container px-4 px-lg-5 mt-5">
-            <h2 class="fw-bolder mb-4">Review Flamenggo Garage</h2>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                {{-- Card Review 1 --}}
-                @foreach ($data as $d)
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/img/Jere.jpeg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">{{$d->user->name}}</h5>
-                                <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
+    <!-- Review, Akan mucul jika ada review/testimoni di table -->
+    @if (!$dataTestimoni->isEmpty())
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">Review Flamenggo Garage</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {{-- Card Review 1 --}}
+                    @foreach ($dataTestimoni as $d)
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                                <img class="card-img-top h-75 object-fit-scale"
+                                    src="{{ $d->file_testimoni == 'default.jpg' ? '/default.jpg' : Storage::url('uploads/file_testimoni/' . $d->file_testimoni) }}"
+                                    alt="{{ $d->file_testimoni }}" />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">{{ $d->user->name }}</h5>
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            @if ($d->rating_testimoni == 1)
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star"></div>
+                                                <div class="bi-star"></div>
+                                                <div class="bi-star"></div>
+                                                <div class="bi-star"></div>
+                                            @elseif ($d->rating_testimoni == 2)
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star"></div>
+                                                <div class="bi-star"></div>
+                                                <div class="bi-star"></div>
+                                            @elseif ($d->rating_testimoni == 3)
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star"></div>
+                                                <div class="bi-star"></div>
+                                            @elseif ($d->rating_testimoni == 4)
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star"></div>
+                                            @elseif ($d->rating_testimoni == 5)
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                                <div class="bi-star-fill"></div>
+                                            @endif
+
+                                        </div>
+                                        <!-- Product price-->
+                                        {{ $d->deskripsi_testimoni }}
+                                    </div>
                                 </div>
-                                <!-- Product price-->
-                                {{ $d->deskripsi_testimoni }}
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 @endsection

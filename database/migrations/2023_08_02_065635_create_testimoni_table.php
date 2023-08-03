@@ -20,7 +20,7 @@ class CreateTestimoniTable extends Migration
             $table->foreign('kd_booking')->references('kd_booking')->on('booking')->onDelete('cascade');
             $table->text('deskripsi_testimoni');
             $table->double('rating_testimoni');
-            $table->string('file_testinomni')->default('default.jpg');
+            $table->string('file_testimoni')->default('default.jpg');
             $table->timestamps();
         });
     }

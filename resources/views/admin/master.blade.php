@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Flamingo Garage</title>
+    <title>Flamenggo Garage</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sb-admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -31,26 +31,11 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">Flamingo Garage</div>
+                <div class="sidebar-brand-text mx-3">Flamenggo Garage</div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{ request()->routeIs('*dashboard*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Booking
-            </div>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item {{ request()->routeIs('*book*') ? 'active' : '' }}">
@@ -60,10 +45,10 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+            <li class="nav-item {{ request()->routeIs('*testimoni*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('list.testimoni') }}">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Reports</span></a>
+                    <span>List Testimoni</span></a>
             </li>
 
             <!-- Divider -->
@@ -96,9 +81,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -120,7 +105,7 @@
                 </nav>
                 <!-- End of Topbar -->
 
-               @yield('content')
+                @yield('content')
 
             </div>
             <!-- End of Main Content -->
@@ -162,7 +147,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button type="submit" class="btn btn-primary">Logout</button>    
+                        <button type="submit" class="btn btn-primary">Logout</button>
                     </form>
                 </div>
             </div>
@@ -182,7 +167,7 @@
     {{-- Enable Tooltip JS --}}
     <script>
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
     </script>

@@ -17,7 +17,6 @@ class CreateJasaTable extends Migration
             $table->id();
             $table->string('nama_jasa');
             $table->text('deskripsi_jasa');
-            $table->double('harga_jasa')->default(0);
             $table->timestamps();
         });
     }

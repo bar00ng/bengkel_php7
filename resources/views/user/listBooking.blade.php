@@ -5,7 +5,7 @@
         <div class="container px-4 px-lg-5 my-2 w-75">
             <div class="card custom-card p-4">
                 <h3>History Booking</h3>
-                
+
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -13,7 +13,6 @@
                                 <th>No</th>
                                 <th>Kode Booking</th>
                                 <th>Status Booking</th>
-                                <th>Total (Rp.)</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -21,7 +20,7 @@
                             @php
                                 $no = 1;
                             @endphp
-    
+
                             @if ($data->isEmpty())
                                 <tr>
                                     <td colspan="8" class="text-center">
@@ -43,35 +42,42 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ 'Rp. ' . number_format($item->total_booking) }}
-                                        </td>
-                                        <td>
+                                            @if ($item->status == 'Selesai')
+                                                <a class="btn btn-sm btn-secondary" role="button"
+                                                    href="{{ route('guest.form.testimoni', ['kd_booking' => $item->kd_booking]) }}">Add
+                                                    Review</a>
+                                            @endif
                                             {{-- Button See Details --}}
-                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detail-booking-{{ $item->kd_booking }}">
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#detail-booking-{{ $item->kd_booking }}">
                                                 <i class="fa fa-eye"></i>
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="detail-booking-{{ $item->kd_booking }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="detail-booking-{{ $item->kd_booking }}"
+                                                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">{{ 'Detail ' . $item->kd_booking }}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                {{ 'Detail ' . $item->kd_booking }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <dl class="row">
                                                                 <dt class="col-sm-4">Tanggal Booking</dt>
                                                                 <dd class="col-sm-8">{{ $item->created_at }}</dd>
-                                                            
+
                                                                 <dt class="col-sm-4">Nama Booker</dt>
                                                                 <dd class="col-sm-8">{{ $item->nama_booking }}</dd>
-                    
+
                                                                 <dt class="col-sm-4">Daftar Belanja</dt>
                                                                 <dd class="col-sm-8">
                                                                     <ul class="list-unstyled">
                                                                         @foreach ($item->bookingDetail as $detail)
-                                                                            <li>{{ $detail->jasa->nama_jasa . ' - ' . number_format($detail->jasa->harga_jasa) }}</li>
+                                                                            <li>{{ $detail->jasa->nama_jasa }}
+                                                                            </li>
                                                                         @endforeach
                                                                     </ul>
                                                                 </dd>
@@ -82,23 +88,23 @@
                                                                 @elseif ($item->status == 'On Progress')
                                                                     <dd class="col-sm-8 text-warning">On Progress</dd>
                                                                 @elseif ($item->status == 'Selesai')
-                                                                    @if (!$item->payment->isPayed)
-                                                                        <dd class="col-sm-8 text-secondary">Belum Bayar</dd>
-                                                                    @elseif ($item->payment->isPayed)
-                                                                        <dd class="col-sm-8 text-success">Selesai</dd>
-                                                                    @endif
+                                                                    <dd class="col-sm-8 text-success">Selesai</dd>
                                                                 @endif
-                    
-                                                                <dt class="col-sm-4">Total Belanja</dt>
-                                                                <dd class="col-sm-8">{{ 'Rp. ' . number_format($item->total_booking) }}</dd>
+
+                                                                <dt class="col-sm-4">Warna</dt>
+                                                                <dd class="col-sm-8">
+                                                                    {{ $item->warna_booking !== null ? $item->warna_booking : '-' }}
+                                                                </dd>
+
+                                                                <dt class="col-sm-4">Kategori</dt>
+                                                                <dd class="col-sm-8">
+                                                                    {{ $item->kategori_booking !== null ? $item->kategori_booking : '-' }}
+                                                                </dd>
                                                             </dl>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            @if ($item->status == 'Selesai')
-                                                <a class="btn btn-sm btn-secondary" role="button" href="{{ route('guest.form.testimoni', ['kd_booking' => $item->kd_booking]) }}">Add Review</a>
-                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

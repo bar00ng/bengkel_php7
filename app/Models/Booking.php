@@ -18,9 +18,9 @@ class Booking extends Model
         'nomor_hp_booking',
         'email_booking',
         'status',
-        'data',
         'belongsTo',
-        'total_booking'
+        'warna_booking',
+        'kategori_booking',
     ];
 
     public function bookingDetail() {
