@@ -42,14 +42,7 @@
                         <li class="nav-item"><a class="nav-link {{ request()->routeIs('*book*') ? 'active' : '' }}" aria-current="page" href="{{ route('history.book') }}">History</a></li>
                         @endif
                         <li class="nav-item"><a class="nav-link {{ request()->routeIs('*about*') ? 'active' : '' }}" href="{{ route('about') }}">About</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jasa</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">Paint/Repaint</a></li>
-                                <li><a class="dropdown-item" href="#!">Service</a></li>
-                                <li><a class="dropdown-item" href="#!">Tune Up</a></li>
-                            </ul>
-                        </li>
+
                     </ul>
                     @if(Auth::user())
                         <a href="{{ route('guest.form.booking') }}" class="btn btn-outline-secondary" role="button">Book Now</a>
