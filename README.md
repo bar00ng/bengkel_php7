@@ -1,4 +1,4 @@
-# Restaurant App
+# Booking Service Bengkel App
 
 ## Requirement PHP 7 ke atas
 
